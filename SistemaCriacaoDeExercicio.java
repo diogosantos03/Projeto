@@ -17,6 +17,6 @@
 //	public Exercicio sortearExercício();
 //	public void atualizarExercício();
 //	public void enviarFeedbackParaAlunos();
-//	public void enviarFeedbackParaProfessor(String texto, String emailRemetente, String emailDestinatario);
+//	publi void enviarFeedbackParaProfessor(String texto, String emailRemetente, String emailDestinatario);
 //
 //}
