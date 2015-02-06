@@ -1,4 +1,4 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 import java.util.ArrayList;
 import java.util.List;

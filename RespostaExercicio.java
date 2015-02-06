@@ -1,9 +1,9 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import projetopoo.Resposta;
+
 public class RespostaExercicio {
 	private Aluno aluno;
 	private List<Resposta> respostas;

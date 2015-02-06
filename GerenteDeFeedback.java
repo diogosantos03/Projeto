@@ -1,10 +1,9 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import projetopoo.Pessoa;
-import projetopoo.Professor;
+
 
 
 public class GerenteDeFeedback {

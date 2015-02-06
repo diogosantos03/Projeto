@@ -1,4 +1,4 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 import java.util.LinkedList;
 import java.util.List;

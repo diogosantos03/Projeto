@@ -1,4 +1,4 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 public class Aluno extends Pessoa{
 	public Aluno(String nome, String matricula){

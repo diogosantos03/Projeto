@@ -1,6 +1,6 @@
-package poo;
+package br.com.ufpb.projetoDisciplinaPOO;
 
-import projetopoo.TipoQuestao;
+
 
 public class Resposta {
 	private int numQuestao;
