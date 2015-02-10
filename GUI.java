@@ -53,13 +53,8 @@ public class GUI extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		String nome = JOptionPane.showInputDialog("Digite o nome: ");
-		String matricula=JOptionPane.showInputDialog("Digite a matricula: ");
-		try{
-		 gerente.cadastrarProfessor(nome, matricula);
-		}catch(ProfessorJaExisteException e){
-			
-		}
+		
+		//Com dúvidas aqui!
 		
 		
 	}
