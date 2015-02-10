@@ -1,4 +1,4 @@
-//package poo;
+//package br.com.ufpb.projetoDisciplinaPOO;
 
 //import java.util.Collection;
 //import java.util.List;
@@ -17,6 +17,6 @@
 //	public Exercicio sortearExercício();
 //	public void atualizarExercício();
 //	public void enviarFeedbackParaAlunos();
-//	publi void enviarFeedbackParaProfessor(String texto, String emailRemetente, String emailDestinatario);
+//	public void enviarFeedbackParaProfessor(String texto, String emailRemetente, String emailDestinatario);
 //
 //}
