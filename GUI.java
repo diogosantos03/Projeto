@@ -13,14 +13,12 @@ import javax.swing.JPanel;
 
 public class GUI extends JFrame{
 	private ExercicioFacade gerenteProf;
-	private Professor prof;
 	JButton botao1, botao2, botao3, botao4;
 	
 	public GUI(){
 		super("Sistema");
 		
 		this.gerenteProf=new ExercicioFacade();
-		this.prof=new Professor();
 		
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
@@ -51,17 +49,17 @@ public class GUI extends JFrame{
 		this.setLocation(150, 150);
 		botao4.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String matricula = JOptionPane.showInputDialog("Digite sua matricula: ");
-				try {
-					gerenteProf.pesquisaProfessorPelaMatricula(matricula);
-					JOptionPane.showMessageDialog(botao4, "O professor pesquisado é: "+prof.getNome());
-				} catch (ProfessorInexistenteException e1) {
-					JOptionPane.showMessageDialog(null,"Professor não encontrado com a matricula: \n> "+matricula);
-				}
-				
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String matricula = JOptionPane.showInputDialog("Digite sua matricula: ");
+			try {
+				Professor p = gerenteProf.pesquisaProfessorPelaMatricula(matricula);
+				JOptionPane.showMessageDialog(botao4, "O professor pesquisado(a) é: "+p.getNome());
+			} catch (ProfessorInexistenteException e1) {
+				JOptionPane.showMessageDialog(null,"Professor não encontrado com a matricula: \n> "+matricula);
 			}
+			
+		}
 			
 		});
 		botao2.addActionListener(new ActionListener(){
