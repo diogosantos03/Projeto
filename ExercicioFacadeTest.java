@@ -1,4 +1,4 @@
-package poo2;
+package br.com.ufpb.projetoDisciplinaPOO;
 
 import static org.junit.Assert.*;
 
