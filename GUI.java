@@ -11,14 +11,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class GUI extends JFrame implements ActionListener{
-	private GerenteDeProfessor gerente;
-	private JButton botao1, botao2, botao3, botao4;
+public class GUI extends JFrame{
+	private ExercicioFacade gerenteProf;
+	private Professor prof;
+	JButton botao1, botao2, botao3, botao4;
 	
 	public GUI(){
 		super("Sistema");
 		
-		this.gerente=new GerenteDeProfessor(); 
+		this.gerenteProf=new ExercicioFacade();
+		this.prof=new Professor();
 		
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
@@ -47,16 +49,40 @@ public class GUI extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLocation(150, 150);
+		botao4.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String matricula = JOptionPane.showInputDialog("Digite sua matricula: ");
+				try {
+					gerenteProf.pesquisaProfessorPelaMatricula(matricula);
+					JOptionPane.showMessageDialog(botao4, "O professor pesquisado é: "+prof.getNome());
+				} catch (ProfessorInexistenteException e1) {
+					JOptionPane.showMessageDialog(null,"Professor não encontrado com a matricula: \n> "+matricula);
+				}
+				
+			}
+			
+		});
+		botao2.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nome = JOptionPane.showInputDialog("Digite seu nome: ");
+				String matricula = JOptionPane.showInputDialog("Digite sua matricula: ");
+				try {
+					gerenteProf.cadastrarProfessor(nome, matricula);
+				} catch (ProfessorJaExisteException e1) {
+					JOptionPane.showMessageDialog(null,"Já existe um professor com esta matricula: \n> "+matricula);
+				}
+				
+				
+				
+			}
+			
+		});
 		
 	}
 	
-
-	@Override
-	public void actionPerformed(ActionEvent evento) {
-		
-		//Com dúvidas aqui!
-		
-		
-	}
 
 }

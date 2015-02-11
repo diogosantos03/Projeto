@@ -9,7 +9,7 @@ public class Professor extends Pessoa{
 		super(texto, emailRemetente, emailDestinatario);
 	}
 	public Professor(){
-		super("sem nome", "sem matricula");
+		super("Sem nome", "Sem matricula");
 	}
 	public String getDescricao(){
 		return "Professor";
