@@ -1,4 +1,4 @@
-package br.com.ufpb.projetoDisciplinaPOO;
+package br.com.ufpb.projetopoo1;
 
 public abstract class Pessoa {
 	private String nome;
