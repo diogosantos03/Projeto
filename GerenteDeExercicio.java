@@ -1,15 +1,37 @@
-package br.com.ufpb.projetopoo1;
+package br.com.ufpb.projetopoo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 public class GerenteDeExercicio {
 	private List < Exercicio > exercicios;
+	private List<RespostaDoExercicio> respostaDoExercicio;	
 	public GerenteDeExercicio(){
 		this.exercicios = new LinkedList<Exercicio>();
+		this.respostaDoExercicio = new ArrayList<RespostaDoExercicio>();
+	}
+	public List<RespostaDoExercicio> getRespostaDoExercicio(){
+		return this.respostaDoExercicio;
+	}
+	public void cadastrarRespostaDoExercicio(RespostaDoExercicio r){
+		this.respostaDoExercicio.add(r);
 	}
 	public void cadastrarExercicio(Exercicio e){
 		this.exercicios.add(e);
+	}
+	public void removeExercicio(String nomeExercicio)throws ExercicioInexistenteException{
+		boolean inexistente = false;
+		for(Exercicio e : this.exercicios){
+			if(e.getNomeExercicio().equals(nomeExercicio)){
+				this.exercicios.remove(e);
+				inexistente = true;
+				break;
+			}
+		}
+		if(!inexistente){
+			throw new ExercicioInexistenteException("Exercicio inexistente "+nomeExercicio);
+		}
 	}
 	public Questao pesquisaQuestaoDeExercicio(String nomeExercicio, int numQuestao)
 			throws QuestaoInexistenteException, ExercicioInexistenteException{
@@ -19,7 +41,7 @@ public class GerenteDeExercicio {
 				return y;
 			}
 		}
-		throw new QuestaoInexistenteException("Questao Inexistente"+numQuestao);
+		throw new QuestaoInexistenteException("Questao Inexistente "+numQuestao);
 	}
 	public Exercicio pesquisarExercicio(String nomeExercicio)
 			throws ExercicioInexistenteException {
@@ -55,25 +77,32 @@ public class GerenteDeExercicio {
 		}
 		throw new ExercicioInexistenteException("exercicio não existe");
 	}
-	public boolean corrigirExercicio(String nomeExercicio, String matriculaAluno) 
+	public String corrigirExercicio(String nomeExercicio, String matriculaAluno) 
 			throws ExercicioInexistenteException{
 		Exercicio e = this.pesquisarExercicio(nomeExercicio);
-		int quantQuestaoCorretas = 0;
-	    for(CadastroDeRespostaDoAluno r: e.getCadastroDeRespostaDoAluno()){
+		String pulaLinha = "\n";
+	    for(RespostaDoExercicio r: this.respostaDoExercicio){
 	        if(r.getAluno().getMatricula().equals(matriculaAluno)){
-	    	    for(int i=0; i<e.getResposta().size(); i++){
-				    if(e.getResposta().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
-				    	quantQuestaoCorretas++;
-				    }
+	        	pulaLinha += "Resposta do(a) aluno(a): "+r.getAluno().toString()+"\n";
+	    	    for(int i=0; i < e.getQuestoes().size(); i++){
+	    	    	if(e.getQuestoes().get(i).getTipo().equals(TipoQuestao.QUESTAO_DISSERTATIVA)){
+	    	    		pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta para essa questão Dissertativa foi:  "+r.getResposta().get(i).getResposta()+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    	}else if(e.getQuestoes().get(i).getTipo().equals(TipoQuestao.QUESTAO_V_OU_F)){
+	    	    		if(e.getQuestoes().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão V ou F esta CORRETA";
+	    	    		}else{
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão V ou F esta INCORRETA"+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    		}
+	    	    	}else{
+	    	    		if(e.getQuestoes().get(i).getResposta().equals(r.getResposta().get(i).getResposta())){
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão Multipla Escolha esta CORRETA";
+	    	    		}else{
+	    	    			pulaLinha += "\n"+r.getResposta().get(i).getNumResposta()+": "+"Resposta da questão Multipla Escolha esta INCORRETA"+", A resposta que o professor deu para essa questão foi: "+e.getQuestoes().get(i).getResposta();
+	    	    		}
+	    	    	}			    
 			    }
 	        }
 	    }
-	    if(quantQuestaoCorretas == e.getResposta().size()){
-	    	return true;
-	    }else{
-	    	return false;
-	    }
+	    return pulaLinha;
 	}
-	
-	
 }

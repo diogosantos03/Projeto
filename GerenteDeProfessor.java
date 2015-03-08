@@ -1,4 +1,4 @@
-package br.com.ufpb.projetopoo1;
+package br.com.ufpb.projetopoo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +16,6 @@ public class GerenteDeProfessor {
 		}
 		this.professores.add(new Professor(nome, matricula));
 	}
-	
 	public void removeProfessor(String matricula)
 			throws ProfessorInexistenteException {
 		boolean inexistente = false;

@@ -1,4 +1,4 @@
-package br.com.ufpb.projetopoo1;
+package br.com.ufpb.projetopoo;
 
 public class QuestaoInexistenteException extends Exception {
 	public QuestaoInexistenteException(String mensagem){

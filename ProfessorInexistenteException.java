@@ -1,4 +1,4 @@
-package br.com.ufpb.projetopoo1;
+package br.com.ufpb.projetopoo;
 
 public class ProfessorInexistenteException extends Exception {
 	public ProfessorInexistenteException(String mensagem){
